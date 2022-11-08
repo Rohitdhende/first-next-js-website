@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }) {
       router.events.off("routeChangeComplete", handleRouteComplete);
       router.events.on("routeChangeStart", handleRouteStart);
     };
-  }, []);
+  }, [router.events]);
 
   return (
     <>

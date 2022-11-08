@@ -13,14 +13,6 @@ const Navbar = () => {
 
   return (
     <div className={styles.container}>
-      <img
-        src={
-          "https://cdn-images-1.medium.com/max/666/1*g5yglZzLgwxUcAdI8SG9ww@2x.png"
-        }
-        alt={"logo"}
-        height={30}
-      />
-
       <ul>
         <li>
           <Link href={"/"}>Home</Link>

@@ -3,32 +3,32 @@ import CustomCard from "./CustomCard";
 
 const CardWrapper = ({ data, searchedData }) => {
   //Use this if the api doesn't work
-  const sampleData = [
-    {
-      id: 1,
-      title: "Defi",
-      img: "https://fujifilm-x.com/wp-content/uploads/2021/01/gfx100s_sample_04_thum-1.jpg",
-      body: "Some quick example text to build on the card title and make up the bulk of the card's content.",
-    },
-    {
-      id: 2,
-      title: "Nft",
-      img: "https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg",
-      body: "Sobody example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.",
-    },
-    {
-      id: 3,
-      title: "Ether",
-      img: "https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg",
-      body: "Sobody example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.",
-    },
-    {
-      id: 4,
-      title: "Token",
-      img: "https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg",
-      body: "Sobody token text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.",
-    },
-  ];
+  // const sampleData = [
+  //   {
+  //     id: 1,
+  //     title: "Defi",
+  //     img: "https://fujifilm-x.com/wp-content/uploads/2021/01/gfx100s_sample_04_thum-1.jpg",
+  //     body: "Some quick example text to build on the card title and make up the bulk of the card's content.",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Nft",
+  //     img: "https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg",
+  //     body: "Sobody example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Ether",
+  //     img: "https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg",
+  //     body: "Sobody example text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.",
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Token",
+  //     img: "https://static.remove.bg/sample-gallery/graphics/bird-thumbnail.jpg",
+  //     body: "Sobody token text to build on the card title and make up the bulk of the card's content. Some quick example text to build on the card title and make up the bulk of the card's content.",
+  //   },
+  // ];
 
   const [filteredData, setFilteredData] = useState(data); //Initialize it as sampleData instead of data if the api doesn't work
   useEffect(() => {
@@ -43,7 +43,7 @@ const CardWrapper = ({ data, searchedData }) => {
       }
     });
     setFilteredData(filteredData);
-  }, [searchedData]);
+  }, [searchedData,data]);
 
   return (
     <div

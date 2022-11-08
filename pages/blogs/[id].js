@@ -27,7 +27,7 @@ export const getStaticProps = async (context) => {
   };
 };
 
-const blogNo = ({ blog }) => {
+const Blog = ({ blog }) => {
   const router = useRouter();
 
   return (
@@ -69,4 +69,4 @@ const blogNo = ({ blog }) => {
   );
 };
 
-export default blogNo;
+export default Blog;
