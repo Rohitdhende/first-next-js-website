@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 
-const index = () => {
+const Home = () => {
   const [isNightMode, setIsNightMode] = useState(null);
   useEffect(() => {
     if (localStorage.getItem("NightMode") === "true") {
@@ -30,4 +30,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Home;

@@ -13,7 +13,7 @@ export const getStaticProps = async () => {
   };
 };
 
-const blog = ({ blogs }) => {
+const Blog = ({ blogs }) => {
   let input = useRef();
   const [search, setSearch] = useState("all");
 
@@ -101,4 +101,4 @@ const blog = ({ blogs }) => {
   );
 };
 
-export default blog;
+export default Blog;
