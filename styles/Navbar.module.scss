@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  background-color: rgb(61, 61, 61);
+  align-items: center;
+  padding: 1rem 0;
+}
+.container > ul {
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+.container > ul > li {
+  list-style: none;
+  margin: 0 10px;
+  color:white;
+  text-decoration: none;
+  cursor: pointer;
+}
+.container > ul > li:hover {
+  color: rgb(114, 179, 233);
+}
