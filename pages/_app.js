@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import "bootstrap/dist/css/bootstrap.css";
 import LoadingBar from "react-top-loading-bar";
 import { useRouter } from "next/router";
+import { AppWrapper } from "../context/state";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -30,14 +31,16 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <LoadingBar
-        color="#00FF00"
-        waitingTime={300}
-        progress={progress}
-        onLoaderFinished={() => setProgress(0)}
-      />
-      <Navbar />
-      <Component {...pageProps} />
+      <AppWrapper isNightMode>
+        <LoadingBar
+          color="#00FF00"
+          waitingTime={300}
+          progress={progress}
+          onLoaderFinished={() => setProgress(0)}
+        />
+        <Navbar />
+        <Component {...pageProps} />
+      </AppWrapper>
     </>
   );
 }

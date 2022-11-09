@@ -1,23 +1,13 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import { useAppContext } from "../context/state";
 
 const Home = () => {
-  const [isNightMode, setIsNightMode] = useState(null);
-  useEffect(() => {
-    if (localStorage.getItem("NightMode") === "true") {
-      setIsNightMode(true);
-    }
-  }, [isNightMode]);
-
+  const { theme } = useAppContext();
   return (
     <div
-      className={isNightMode ? "darkMode" : "lightMode"}
-      style={{
-        height: "90vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      className={`${
+        theme == "light" ? "lightMode" : "darkMode"
+      } parentFlex fluidContainer`}
     >
       <Head>
         <title>Home</title>
@@ -25,7 +15,13 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content="This is Home Page" />
       </Head>
-      <div className="parentFlex">
+      <div
+        className={`${
+          theme == "light"
+            ? "lightMode lightModeColor"
+            : "darkMode darkModeColor"
+        } parentFlex `}
+      >
         <h1>This is Home Page </h1>
 
         <h2>Click on Blogs to see the blogs</h2>

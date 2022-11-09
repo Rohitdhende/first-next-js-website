@@ -1,8 +1,15 @@
-import React from "react";
 import Head from "next/head";
+import { useAppContext } from "../../context/state";
+
 const index = () => {
+  const { theme } = useAppContext();
+
   return (
-    <div className="parentFlex">
+    <div
+      className={`${
+        theme == "light" ? "lightMode lightModeColor" : "darkMode darkModeColor"
+      } parentFlex fluidContainer`}
+    >
       <Head>
         <title>About Us</title>
         <meta name="description" content="About Us Page" />

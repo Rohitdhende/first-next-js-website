@@ -1,15 +1,8 @@
 import Link from "next/link";
 import styles from "../styles/Navbar.module.scss";
-import { useState, useEffect } from "react";
-
+import { useAppContext } from "../context/state";
 const Navbar = () => {
-  const [isNightMode, setIsNightMode] = useState(false);
-
-  useEffect(() => {
-    if (localStorage.getItem("NightMode") === "true") {
-      setIsNightMode(true);
-    }
-  }, [isNightMode]);
+  const { theme, setTheme } = useAppContext();
 
   return (
     <div className={styles.container}>
@@ -27,7 +20,7 @@ const Navbar = () => {
           <Link href={"/aboutus"}>About Us</Link>
         </li>
         <li>
-          {isNightMode ? (
+          {theme === "dark" ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -36,8 +29,8 @@ const Navbar = () => {
               className="bi bi-moon-fill"
               viewBox="0 0 16 16"
               onClick={() => {
-                setIsNightMode(!isNightMode);
-                localStorage.setItem("NightMode", !isNightMode);
+                setTheme("light");
+                localStorage.setItem("theme", "light");
               }}
               color={"#B2BEB5"}
             >
@@ -52,8 +45,8 @@ const Navbar = () => {
               className="bi bi-brightness-high-fill"
               viewBox="0 0 16 16"
               onClick={() => {
-                setIsNightMode(!isNightMode);
-                localStorage.setItem("NightMode", !isNightMode);
+                setTheme("dark");
+                localStorage.setItem("theme", "dark");
               }}
               color={"yellow"}
             >
