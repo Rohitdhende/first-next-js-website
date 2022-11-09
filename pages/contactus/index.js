@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 import { useAppContext } from "../../context/state";
 
-const index = () => {
+const ContactUs = () => {
   const { theme } = useAppContext();
   return (
     <div
@@ -23,4 +23,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default ContactUs;
