@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useAppContext } from "../../context/state";
 
-const index = () => {
+const AboutUs = () => {
   const { theme } = useAppContext();
 
   return (
@@ -29,4 +29,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default AboutUs;
