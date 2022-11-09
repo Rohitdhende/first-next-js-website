@@ -1,11 +1,25 @@
-import React from 'react'
-
+import React from "react";
+import Head from "next/head";
 const index = () => {
   return (
-    <div>
-      This is about us Page
+    <div className="parentFlex">
+      <Head>
+        <title>About Us</title>
+        <meta name="description" content="About Us Page" />
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="This is About Us Page" />
+      </Head>
+      <h1>About Us</h1>
+      <h2>We are blockchain company</h2>
+      <p>
+        A blockchain is a decentralized ledger of all transactions across a
+        peer-to-peer network. Using this technology, participants can confirm
+        transactions without a need for a central clearing authority. Potential
+        applications can include fund transfers, settling trades, voting and
+        many other issues.
+      </p>
     </div>
-  )
-}
+  );
+};
 
-export default index
+export default index;

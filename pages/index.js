@@ -20,12 +20,16 @@ const Home = () => {
       }}
     >
       <Head>
-        <title>Home Page</title>
+        <title>Home</title>
         <meta name="description" content="Home Page" />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content="This is Home Page" />
       </Head>
-      <div>This is Home Page, Click on Blogs to see the blogs</div>
+      <div className="parentFlex">
+        <h1>This is Home Page </h1>
+
+        <h2>Click on Blogs to see the blogs</h2>
+      </div>
     </div>
   );
 };

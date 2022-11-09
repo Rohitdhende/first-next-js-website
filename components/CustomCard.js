@@ -10,6 +10,7 @@ const CustomCard = ({ title, img, text, button, id }) => {
         variant="top"
         src={img ? img : "/images/default.jpg"}
         style={{ aspectRatio: 1 }}
+        alt={title}
       />
 
       <Card.Body
