@@ -46,10 +46,8 @@ const Blog = ({ blog }) => {
         <meta name="description" content={blog.title} />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:image" content="/blog-logo.png" />
-        <meta
-          property={`og:${blog.title}`}
-          content={`This page contains blog of ${blog.title}`}
-        />
+        <meta property={`og:title`} content={`${blog.title}`} />
+        <meta property={`og:description`} content={`${blog.body}`} />
       </Head>
       <div style={{ textAlign: "center" }}>
         <h4>{blog.title}</h4>
