@@ -50,6 +50,7 @@ const Blog = ({ blog }) => {
         <meta property={`og:description`} content={`${blog.body}`} />
       </Head>
       <div style={{ textAlign: "center" }}>
+      <img  alt={'blog'} src={blog.img ? blog.img : '/images/default.jpg'}/>
         <h4>{blog.title}</h4>
         <p>{blog.body}</p>
       </div>
