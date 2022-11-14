@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import styles from "../styles/CustomCard.module.scss";
 import { useAppContext } from "../context/state";
+import parse from "react-html-parser";
 
 const CustomCard = ({ title, img, text, button, id }) => {
   const { theme } = useAppContext();
@@ -26,12 +27,11 @@ const CustomCard = ({ title, img, text, button, id }) => {
       >
         {title && <Card.Title className={"text-truncate"}>{title}</Card.Title>}
         {text && (
-          <div
-            dangerouslySetInnerHTML={{ __html: text }}
-            className={styles.lineClamp}
-            style={{ marginBottom: "1rem" }}
-          />
+          <div className={styles.lineClamp} style={{ marginBottom: "1rem" }}>
+            {parse(text)}
+          </div>
         )}
+
         {button && (
           <Link href={`/blogs/${id}`}>
             <Button

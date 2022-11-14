@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
+import parse from "react-html-parser";
 
 export const getServerSideProps = async (context) => {
   const id = context.params.id;
@@ -66,8 +67,9 @@ const Blog = ({ blog }) => {
           style={{
             fontSize: "clamp(1rem, 1rem + ((1vw - 0.48rem) * 0.24), 1.125rem)",
           }}
-          dangerouslySetInnerHTML={{ __html: blog.content.rendered }}
-        />
+        >
+          {parse(blog.content.rendered)}
+        </div>
         <div
           style={{
             width: "100%",
