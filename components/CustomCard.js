@@ -9,13 +9,14 @@ const CustomCard = ({ title, img, text, button, id }) => {
 
   return (
     <Card className={theme === "light" ? styles.lightCard : styles.darkCard}>
-      <Card.Img
-        variant="top"
-        src={img ? img : "/images/default.jpg"}
-        style={{ aspectRatio: 1 }}
-        alt={title}
-      />
-
+      {img && (
+        <Card.Img
+          variant="top"
+          src={img}
+          style={{ aspectRatio: 1 }}
+          alt={title}
+        />
+      )}
       <Card.Body
         style={{
           display: "flex",
@@ -24,7 +25,13 @@ const CustomCard = ({ title, img, text, button, id }) => {
         }}
       >
         {title && <Card.Title className={"text-truncate"}>{title}</Card.Title>}
-        {text && <Card.Text className={styles.lineClamp}>{text}</Card.Text>}
+        {text && (
+          <div
+            dangerouslySetInnerHTML={{ __html: text }}
+            className={styles.lineClamp}
+            style={{ marginBottom: "1rem" }}
+          />
+        )}
         {button && (
           <Link href={`/blogs/${id}`}>
             <Button

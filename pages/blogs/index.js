@@ -7,7 +7,9 @@ import Head from "next/head";
 import { useAppContext } from "../../context/state";
 
 export const getStaticProps = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+  const res = await fetch(
+    "https://minddeft.net/dev_blog/wp-json/wp/v2/ll-blog"
+  );
   const data = await res.json();
   return {
     props: { blogs: data },
