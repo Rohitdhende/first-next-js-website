@@ -34,7 +34,7 @@ export const getStaticProps = async (context) => {
 
 const Blog = ({ blog }) => {
   const router = useRouter();
-  console.log(blog);
+
   let options = { year: "numeric", month: "long", day: "numeric" };
   let date = new Date(blog.date).toLocaleDateString("en-US", options);
   return (
