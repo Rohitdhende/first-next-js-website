@@ -3,24 +3,7 @@ import Head from "next/head";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 
-export const getStaticPaths = async () => {
-  const res = await fetch(
-    "https://minddeft.net/dev_blog/wp-json/wp/v2/ll-blog"
-  );
-  const data = await res.json();
-  const paths = data.map((blog) => {
-    return {
-      params: { id: blog.id.toString() },
-    };
-  });
-
-  return {
-    paths: paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
   const id = context.params.id;
 
   const res = await fetch(
@@ -97,7 +80,7 @@ const Blog = ({ blog }) => {
           </div>
           <div style={{ margin: "1rem" }}>
             tags{" "}
-            {blog.tags?.map((tag,index) => {
+            {blog.tags?.map((tag, index) => {
               return <span key={index}>{tag}</span>;
             })}
           </div>
