@@ -97,8 +97,8 @@ const Blog = ({ blog }) => {
           </div>
           <div style={{ margin: "1rem" }}>
             tags{" "}
-            {blog.tags?.map((tag) => {
-              return <span>{tag}</span>;
+            {blog.tags?.map((tag,index) => {
+              return <span key={index}>{tag}</span>;
             })}
           </div>
         </div>
