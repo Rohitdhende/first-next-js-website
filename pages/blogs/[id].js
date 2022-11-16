@@ -3,14 +3,12 @@ import Head from "next/head";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import parse from "react-html-parser";
+import { getBlog } from "../api/blog";
 
 export const getServerSideProps = async (context) => {
   const id = context.params.id;
 
-  const res = await fetch(
-    `https://minddeft.net/dev_blog/wp-json/wp/v2/ll-blog/${id}`
-  );
-  const data = await res.json();
+  const data = await getBlog(id);
   return {
     props: { blog: data },
   };

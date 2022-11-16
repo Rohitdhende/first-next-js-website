@@ -5,7 +5,7 @@ import styles from "../styles/CustomCard.module.scss";
 import { useAppContext } from "../context/state";
 import parse from "react-html-parser";
 
-const CustomCard = ({ title, img, text, button, id }) => {
+const CustomCard = ({ title, img, content, button, id }) => {
   const { theme } = useAppContext();
 
   return (
@@ -26,9 +26,9 @@ const CustomCard = ({ title, img, text, button, id }) => {
         }}
       >
         {title && <Card.Title className={"text-truncate"}>{title}</Card.Title>}
-        {text && (
+        {content && (
           <div className={styles.lineClamp} style={{ marginBottom: "1rem" }}>
-            {parse(text)}
+            {parse(content)}
           </div>
         )}
 

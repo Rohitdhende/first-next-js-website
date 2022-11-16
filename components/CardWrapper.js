@@ -59,7 +59,7 @@ const CardWrapper = ({ data, searchedData }) => {
           <CustomCard
             title={card.title.rendered}
             id={card.id}
-            text={card.content.rendered}
+            content={card.content.rendered}
             button={"Read More"}
           />
         </div>

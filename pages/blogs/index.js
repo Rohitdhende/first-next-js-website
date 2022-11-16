@@ -5,12 +5,10 @@ import Button from "react-bootstrap/Button";
 import { ButtonGroup } from "react-bootstrap";
 import Head from "next/head";
 import { useAppContext } from "../../context/state";
+import { getBlogs } from "../api/blog";
 
 export const getServerSideProps = async () => {
-  const res = await fetch(
-    `https://minddeft.net/dev_blog/wp-json/wp/v2/ll-blog`
-  );
-  const data = await res.json();
+  const data = await getBlogs();
   return {
     props: { blogs: data },
   };
