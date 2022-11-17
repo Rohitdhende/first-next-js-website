@@ -34,17 +34,23 @@ const CardWrapper = ({ data, searchedData }) => {
   useEffect(() => {
     const filteredData = data?.filter((item) => {
       //map it with sampleData instead of data if the api doesn't work
-      if (searchedData === "all") {
+      if (
+        (searchedData?.length > 0 && searchedData[0] === "all") ||
+        searchedData === null
+      ) {
         return item;
       } else {
-        return (
-          item.title.rendered
-            .toLowerCase()
-            .includes(searchedData.toLowerCase()) ||
-          item.content.rendered
-            .toLowerCase()
-            .includes(searchedData.toLowerCase())
-        );
+        if (searchedData?.length > 0) {
+          for (let i = 0; i < searchedData.length; i++) {
+            if (
+              item.post_title
+                ?.toLowerCase()
+                .includes(searchedData[i]?.toLowerCase())
+            ) {
+              return item;
+            }
+          }
+        }
       }
     });
     setFilteredData(filteredData);
@@ -57,9 +63,9 @@ const CardWrapper = ({ data, searchedData }) => {
       {filteredData?.slice(0, 6).map((card, index) => (
         <div key={index} style={{ width: "18rem", margin: "0.5rem" }}>
           <CustomCard
-            title={card.title.rendered}
-            id={card.id}
-            content={card.content.rendered}
+            title={card.post_title}
+            id={card.ID}
+            content={card.post_content}
             button={"Read More"}
           />
         </div>

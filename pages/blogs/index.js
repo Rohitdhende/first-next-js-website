@@ -5,19 +5,25 @@ import Button from "react-bootstrap/Button";
 import { ButtonGroup } from "react-bootstrap";
 import Head from "next/head";
 import { useAppContext } from "../../context/state";
-import { getBlogs } from "../api/blog";
+import { getBlogs, getCategories } from "../api/blog";
+import { useEffect } from "react";
 
 export const getServerSideProps = async () => {
   const data = await getBlogs();
+  const categories = await getCategories();
   return {
-    props: { blogs: data },
+    props: { blogs: data, categories: categories },
   };
 };
 
-const Blog = ({ blogs }) => {
+const Blog = ({ blogs, categories }) => {
   let input = useRef();
   const [search, setSearch] = useState("all");
   const { theme } = useAppContext();
+  const [searchedData, setSearchedData] = useState([]);
+  useEffect(() => {
+    setSearchedData(search.match(/\b[-?(\w+)?]+\b/gi));
+  }, [search]);
 
   return (
     <div
@@ -56,13 +62,17 @@ const Blog = ({ blogs }) => {
         }}
       >
         <Button
-          variant={`${search === "all" ? "dark" : "outline-dark"}
+          className={`hover-zoom`}
+          variant={`${
+            search === "all" || search === "" ? "dark" : "outline-dark"
           }`}
           style={{
             borderColor: `${theme === "light" ? "black" : "white"}`,
-
+            "&:hover": {
+              opacity: 0,
+            },
             color: `${
-              search === "all"
+              search === "all" || search === ""
                 ? theme === "light"
                   ? "white"
                   : "white"
@@ -77,96 +87,37 @@ const Blog = ({ blogs }) => {
         >
           All
         </Button>
-        <Button
-          variant={`${search === "defi" ? "dark" : "outline-dark"}
-          }`}
-          style={{
-            borderColor: `${theme === "light" ? "black" : "white"}`,
-
-            color: `${
-              search === "defi"
-                ? theme === "light"
-                  ? "white"
+        {categories?.map((category, index) => (
+          <Button
+            key={index}
+            className={`hover-zoom`}
+            variant={`${
+              search === category.name.toLowerCase() ? "dark" : "outline-dark"
+            }`}
+            style={{
+              borderColor: `${theme === "light" ? "black" : "white"}`,
+              "&:hover": {
+                opacity: 0,
+              },
+              color: `${
+                search === category.name.toLowerCase()
+                  ? theme === "light"
+                    ? "white"
+                    : "white"
+                  : theme === "light"
+                  ? "black"
                   : "white"
-                : theme === "light"
-                ? "black"
-                : "white"
-            }`,
-          }}
-          onClick={() => {
-            setSearch("defi");
-          }}
-        >
-          Defi
-        </Button>
-        <Button
-          variant={`${search === "nft" ? "dark" : "outline-dark"}
-          }`}
-          style={{
-            borderColor: `${theme === "light" ? "black" : "white"}`,
-
-            color: `${
-              search === "nft"
-                ? theme === "light"
-                  ? "white"
-                  : "white"
-                : theme === "light"
-                ? "black"
-                : "white"
-            }`,
-          }}
-          onClick={() => {
-            setSearch("nft");
-          }}
-        >
-          NFT
-        </Button>
-        <Button
-          variant={`${search === "token" ? "dark" : "outline-dark"}
-          }`}
-          style={{
-            borderColor: `${theme === "light" ? "black" : "white"}`,
-
-            color: `${
-              search === "token"
-                ? theme === "light"
-                  ? "white"
-                  : "white"
-                : theme === "light"
-                ? "black"
-                : "white"
-            }`,
-          }}
-          onClick={() => {
-            setSearch("token");
-          }}
-        >
-          Token
-        </Button>
-        <Button
-          variant={`${search === "ether" ? "dark" : "outline-dark"}
-          }`}
-          style={{
-            borderColor: `${theme === "light" ? "black" : "white"}`,
-
-            color: `${
-              search === "ether"
-                ? theme === "light"
-                  ? "white"
-                  : "white"
-                : theme === "light"
-                ? "black"
-                : "white"
-            }`,
-          }}
-          onClick={() => {
-            setSearch("ether");
-          }}
-        >
-          Ether
-        </Button>
+              }`,
+            }}
+            onClick={() => {
+              setSearch(category.slug);
+            }}
+          >
+            {category.name}
+          </Button>
+        ))}
       </ButtonGroup>
-      <CardWrapper searchedData={search} data={blogs} />
+      <CardWrapper searchedData={searchedData} data={blogs} />
     </div>
   );
 };

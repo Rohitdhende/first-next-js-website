@@ -4,11 +4,11 @@ import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import parse from "react-html-parser";
 import { getBlog } from "../api/blog";
-
+import styles from "../../styles/BlogPage.module.scss";
 export const getServerSideProps = async (context) => {
-  const id = context.params.id;
+  const postName = context.params.post_name;
 
-  const data = await getBlog(id);
+  const data = await getBlog(postName);
   return {
     props: { blog: data },
   };
@@ -30,26 +30,17 @@ const Blog = ({ blog }) => {
       }}
     >
       <Head>
-        <title>{blog.title.rendered}</title>
-        <meta name="description" content={blog.title.rendered} />
+        <title>{blog.post_title}</title>
+        <meta name="description" content={blog.next_post.post_title} />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:image" content="/blog-logo.png" />
-        <meta property={`og:title`} content={`${blog.acf.fb_og_title}`} />
+        <meta property={`og:title`} content={`${blog.fb_og_title}`} />
         <meta
           property={`og:description`}
-          content={`${blog.content.rendered}`}
+          content={`${blog.next_post.post_content}`}
         />
       </Head>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          width: "40%",
-          height: "100%",
-          marginTop: "4rem",
-          alignItems: "center",
-        }}
-      >
+      <div className={styles.container}>
         {blog.img && <Image alt={"blog"} src={blog.img} thumbnail={true} />}
         <h1
           style={{
@@ -59,14 +50,14 @@ const Blog = ({ blog }) => {
             marginBottom: "{var(--wp--preset--spacing--40)}",
           }}
         >
-          {blog.title.rendered}
+          {blog.next_post.post_title}
         </h1>
         <div
           style={{
             fontSize: "clamp(1rem, 1rem + ((1vw - 0.48rem) * 0.24), 1.125rem)",
           }}
         >
-          {parse(blog.content.rendered)}
+          {parse(blog.next_post.post_content)}
         </div>
         <div
           style={{
@@ -76,7 +67,7 @@ const Blog = ({ blog }) => {
           }}
         >
           <div style={{ marginTop: "1rem" }}>
-            Posted {date} in by {blog.author}
+            Posted {date} in by {blog.next_post.post_author}
           </div>
           <div style={{ margin: "1rem" }}>
             tags{" "}
