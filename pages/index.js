@@ -22,7 +22,7 @@ const Home = () => {
             : "darkMode darkModeColor"
         } parentFlex `}
       >
-        <h1>This is Home Page </h1>
+        <h1>This is Home </h1>
 
         <h2>Click on Blogs to see the blogs</h2>
       </div>
