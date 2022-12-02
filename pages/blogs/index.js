@@ -163,7 +163,7 @@ const Blog = ({ blogs }) => {
             setSearch("ether");
           }}
         >
-          Ether
+          Ethers
         </Button>
       </ButtonGroup>
       <CardWrapper searchedData={search} data={blogs} />
